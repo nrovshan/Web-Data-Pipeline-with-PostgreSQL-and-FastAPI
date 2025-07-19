@@ -1,0 +1,11 @@
+# Ignore environment secrets
+.env
+
+# Airflow folders
+logs/
+__pycache__/
+*.pyc
+airflow.db
+
+# VS Code config files (optional)
+.vscode/

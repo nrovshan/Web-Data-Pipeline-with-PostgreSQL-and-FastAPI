@@ -12,3 +12,6 @@ This project scrapes book information from [Books to Scrape](https://books.toscr
 - Python
 - BeautifulSoup
 - Requests
+
+
+## Copy .env.example to .env and fill in your credentials.
