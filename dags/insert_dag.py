@@ -66,6 +66,8 @@ with DAG(
     tags=["scraping", "postgres"],
 ) as dag:
 
+
+    # Task to create the books table
     create_table_task = PythonOperator(
             task_id="create_table",
             python_callable=create_table
