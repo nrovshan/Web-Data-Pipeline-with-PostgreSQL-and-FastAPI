@@ -3,13 +3,16 @@ from bs4 import BeautifulSoup
 import pandas as pd
 
 
-
+# Define a function to scrape book information from a range of pages
 def scrape_pages(start_page: int, end_page: int):
 
+    # Base URL of the book site with a placeholder for page numbers
     main_url = "http://books.toscrape.com/catalogue/page-{}.html"
 
+    # Initialize an empty list to hold book data
     book_list = []
 
+    # Loop through the specified range of pages
     for page_num in range(start_page, end_page + 1):
 
         url = main_url.format(page_num)
@@ -18,6 +21,7 @@ def scrape_pages(start_page: int, end_page: int):
         books = soup.find_all("article", class_="product_pod")
 
 
+        # Loop through each book element found
         for book in books:
 
             title = book.h3.a["title"]
@@ -26,6 +30,8 @@ def scrape_pages(start_page: int, end_page: int):
             stars = star_tag["class"][1] 
             stock = book.find("p", class_="instock availability").text.strip()
 
+
+            # Append the extracted data as a tuple to the book list
             book_list.append((
                 title,
                 price,
@@ -33,8 +39,7 @@ def scrape_pages(start_page: int, end_page: int):
                 stock
             ))
             
-            # df = pd.DataFrame(book_list, columns = ["title", "price", "stars", "stock"])
-
+    # Return the final list of books
     return book_list
     
 
