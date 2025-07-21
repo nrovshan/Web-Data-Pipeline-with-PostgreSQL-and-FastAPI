@@ -9,3 +9,6 @@ airflow.db
 
 # VS Code config files (optional)
 .vscode/
+
+# Ignore Python virtual environments
+new_venv/
