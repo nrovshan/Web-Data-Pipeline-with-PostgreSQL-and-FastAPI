@@ -4,6 +4,7 @@ from airflow.operators.bash import BashOperator
 from airflow.providers.postgres.hooks.postgres import PostgresHook
 from book_scrape import scrape_pages
 from datetime import datetime
+import subprocess
 
 
 # Function to create the `books` table in PostgreSQL if it doesn't exist
@@ -91,9 +92,9 @@ with DAG(
     
 
     run_dbt = BashOperator(
-        task_id = "transformation_stage",
-        bash_command = "cd C:/Users/Narmin/Desktop/auto_pipe_project/dbt_transform && dbt run",
-        dag = dag )
+        task_id="transformation_stage",
+        bash_command="cd /opt/airflow/dbt_transform && dbt run --profiles-dir /home/airflow/.dbt",
+        dag=dag,)
 
     create_table_task >> scrape_task >> run_dbt
 

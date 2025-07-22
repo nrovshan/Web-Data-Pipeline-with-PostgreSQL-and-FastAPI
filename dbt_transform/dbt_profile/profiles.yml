@@ -1,0 +1,11 @@
+auto_pipe_project:
+  target: dev
+  outputs:
+    dev:
+      type: postgres
+      host: host.docker.internal  # Use this to connect to your local PostgreSQL
+      user: postgres
+      password: narmin
+      port: 5432
+      dbname: postgres
+      schema: public
