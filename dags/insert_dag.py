@@ -20,7 +20,8 @@ def create_table():
                    title text,
                    price text,
                    stars text,
-                   stock text);
+                   stock text,
+                   loaded_at timestamp);
                    """)
 
 
@@ -45,8 +46,8 @@ def insert_table(start_page: int, end_page: int):
     for book in books:
         
         cursor.execute(
-            "INSERT INTO books (title, price, stars, stock) VALUES (%s, %s, %s, %s)",
-            book
+            "INSERT INTO books (title, price, stars, stock, loaded_at) VALUES (%s, %s, %s, %s, %s)",
+            (*book, datetime.now())
     )
         
 
