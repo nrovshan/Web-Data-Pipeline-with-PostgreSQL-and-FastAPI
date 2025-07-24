@@ -2,9 +2,10 @@ from airflow import DAG
 from airflow.operators.python import PythonOperator
 from airflow.operators.bash import BashOperator
 from airflow.providers.postgres.hooks.postgres import PostgresHook
+from airflow.utils.task_group import TaskGroup
 from book_scrape import scrape_pages
 from datetime import datetime
-import subprocess
+
 
 
 # Function to create the `books` table in PostgreSQL if it doesn't exist
