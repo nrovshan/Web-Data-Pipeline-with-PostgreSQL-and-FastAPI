@@ -79,16 +79,19 @@ with DAG(
 
 
     # Loop to create multiple scraping tasks (5 batches of 10 pages = 50 pages total)
-    for i in range(5):
-        start = i * 10 + 1
-        end = (i + 1) * 10
 
-        # Define a scraping and insertion task for each batch
-        scrape_task = PythonOperator(
-            task_id=f"scrape_pages_{start}_{end}",
-            python_callable=insert_table,
-            op_args=[start, end]
-            )
+    with TaskGroup(group_id = "scraping_pages") as scraping_group:
+
+        for i in range(5):
+            start = i * 10 + 1
+            end = (i + 1) * 10
+
+            # Define a scraping and insertion task for each batch
+            PythonOperator(
+                task_id=f"scrape_pages_{start}_{end}",
+                python_callable=insert_table,
+                op_args=[start, end]
+                )
         
     
 
@@ -97,5 +100,5 @@ with DAG(
         bash_command="cd /opt/airflow/dbt_transform && dbt run --profiles-dir /home/airflow/.dbt",
         dag=dag,)
 
-    create_table_task >> scrape_task >> run_dbt
+    create_table_task >> scraping_group >> run_dbt
 
