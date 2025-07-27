@@ -39,13 +39,16 @@ def scrape_pages(start_page: int, end_page: int):
             detail_soup = BeautifulSoup(detail_response.content, "html.parser")
             stock = detail_soup.find("p", class_="instock availability").get_text(strip=True)
 
+            category = detail_soup.find_all("ul", class_ = "breadcrumb")[0].find_all("a")[2].text
+
 
             # Append the extracted data as a tuple to the book list
             book_list.append((
                 title,
                 price,
                 stars,
-                stock
+                stock,
+                category
             ))
             
     # Return the final list of books
