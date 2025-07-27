@@ -7,7 +7,8 @@ import pandas as pd
 def scrape_pages(start_page: int, end_page: int):
 
     # Base URL of the book site with a placeholder for page numbers
-    main_url = "http://books.toscrape.com/catalogue/page-{}.html"
+    base_url = "https://books.toscrape.com/"
+    main_url = base_url + "catalogue/page-{}.html"
 
     # Initialize an empty list to hold book data
     book_list = []
@@ -28,7 +29,15 @@ def scrape_pages(start_page: int, end_page: int):
             price = book.find("p", class_="price_color").text.strip()
             star_tag = book.find("p", class_="star-rating")
             stars = star_tag["class"][1] 
-            stock = book.find("p", class_="instock availability").text.strip()
+            
+            # Get detail page link (fix relative URL)
+            detail_partial_url = book.h3.a["href"]
+            detail_url = base_url + "catalogue/" + detail_partial_url.replace('../../../', '')
+
+            # Visit book detail page
+            detail_response = requests.get(detail_url)
+            detail_soup = BeautifulSoup(detail_response.content, "html.parser")
+            stock = detail_soup.find("p", class_="instock availability").get_text(strip=True)
 
 
             # Append the extracted data as a tuple to the book list
@@ -41,7 +50,11 @@ def scrape_pages(start_page: int, end_page: int):
             
     # Return the final list of books
     return book_list
-    
 
+
+if __name__ == "__main__":
+    df = scrape_pages(1,2)
+    print(df)
+    
 
 
