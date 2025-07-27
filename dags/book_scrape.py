@@ -41,6 +41,13 @@ def scrape_pages(start_page: int, end_page: int):
 
             category = detail_soup.find_all("ul", class_ = "breadcrumb")[0].find_all("a")[2].text
 
+            book_tax = detail_soup.find("th", string="Tax").find_next_sibling("td").text.strip()
+
+            number_reviews = detail_soup.find("th", string="Number of reviews").find_next_sibling("td").text.strip()
+
+
+            page_url = detail_url
+
 
             # Append the extracted data as a tuple to the book list
             book_list.append((
@@ -48,16 +55,16 @@ def scrape_pages(start_page: int, end_page: int):
                 price,
                 stars,
                 stock,
-                category
+                category,
+                book_tax,
+                number_reviews,
+                page_url
             ))
             
     # Return the final list of books
     return book_list
 
 
-if __name__ == "__main__":
-    df = scrape_pages(1,2)
-    print(df)
     
 
 
