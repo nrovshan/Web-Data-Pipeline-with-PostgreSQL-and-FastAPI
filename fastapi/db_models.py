@@ -3,6 +3,7 @@ from database import base
 
 
 class books(base):
+    __tablename__ = "books"
     id = Column(Integer, primary_key=True)
     title = Column(String)
     stars = Column(String)
