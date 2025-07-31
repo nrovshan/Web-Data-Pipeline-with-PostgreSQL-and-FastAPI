@@ -2,8 +2,8 @@ from sqlalchemy import Column, String, Integer, TIMESTAMP
 from database import base
 
 
-class books(base):
-    __tablename__ = "books"
+class cleanbooks(base):
+    __tablename__ = "clean_books"
     id = Column(Integer, primary_key=True)
     title = Column(String)
     stars = Column(String)
