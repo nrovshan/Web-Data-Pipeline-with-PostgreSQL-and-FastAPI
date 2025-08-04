@@ -19,6 +19,18 @@ engine = create_engine(db_url)
 
 
 Session_local = sessionmaker(bind=engine)
-session = Session_local()
 
 base = declarative_base()
+
+
+def get_session():
+    
+    db = Session_local()
+
+    try:
+        yield db
+    finally:
+        db.close()
+
+
+
