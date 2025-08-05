@@ -10,3 +10,7 @@ def get_books(db: Session = Depends(get_db)):
     books = db.query(cleanbooks).all()
     return books
 
+
+@router.get("/books/search")
+def search_books(title: str, db: Session = Depends(get_db)):
+    return db.query(cleanbooks).filter(cleanbooks.title.ilike(f"%{title}%")).all()
