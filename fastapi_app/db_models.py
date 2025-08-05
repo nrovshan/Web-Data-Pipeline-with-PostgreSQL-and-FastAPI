@@ -1,5 +1,5 @@
 from sqlalchemy import Column, String, Integer, TIMESTAMP
-from database import base
+from fastapi_app.database import base
 
 
 class cleanbooks(base):
