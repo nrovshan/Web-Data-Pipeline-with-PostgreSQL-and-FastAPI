@@ -23,7 +23,7 @@ Session_local = sessionmaker(bind=engine)
 base = declarative_base()
 
 
-def get_session():
+def get_db():
     
     db = Session_local()
 
