@@ -1,16 +1,14 @@
 from sqlalchemy import Column, String, Integer, TIMESTAMP
-from fastapi_app.database import base
+from fastapi_app.database import Base
 
 
-class cleanbooks(base):
+class CleanBooks(Base):
     __tablename__ = "clean_books"
     id = Column(Integer, primary_key=True)
     title = Column(String)
-    stars = Column(String)
+    price = Column(Integer)
+    currency = Column(String)
+    star_rating = Column(String)
     stock = Column(String)
-    category = Column(String)
-    book_tax = Column(String)
-    number_reviews = Column(String)
-    page_url = Column(String)
     loaded_at = Column(TIMESTAMP)
 
