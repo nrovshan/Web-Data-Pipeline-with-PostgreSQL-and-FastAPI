@@ -10,5 +10,9 @@ class CleanBooks(Base):
     currency = Column(String)
     star_rating = Column(String)
     stock = Column(String)
+    category = Column(String)
+    book_tax = Column(String)
+    number_review = Column(String)
+    page_url = Column(String)
     loaded_at = Column(TIMESTAMP)
 

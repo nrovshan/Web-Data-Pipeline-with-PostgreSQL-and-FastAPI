@@ -20,6 +20,10 @@ cleaned as (
             else null
             end as star_rating,
             stock,
+            category,
+            book_tax,
+            number_reviews,
+            page_url,
             loaded_at
     from source
 )

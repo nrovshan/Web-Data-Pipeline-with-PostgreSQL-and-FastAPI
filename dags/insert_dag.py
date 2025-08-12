@@ -53,7 +53,7 @@ def insert_table(start_page: int, end_page: int):
     for book in books:
         
         cursor.execute(
-            "INSERT INTO books (title, price, stars, stock, category, book_tax, number_reviews, page_url loaded_at) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)",
+            "INSERT INTO books (title, price, stars, stock, category, book_tax, number_reviews, page_url, loaded_at) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)",
             (*book, datetime.now())
     )
         
