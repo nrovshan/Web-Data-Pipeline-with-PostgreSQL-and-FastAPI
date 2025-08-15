@@ -30,26 +30,27 @@ The goal is to demonstrate **ETL orchestration**, **SQL transformations**, and *
 
 ---
 
-## Project Structure
+## 🎯 Project Goal
 
-```plaintext
-.
-├── airflow_dags/
-│   ├── scrape_books_dag.py        # Orchestrates scraping and DB load
-│   ├── utils/                     # Helper functions
-│
-├── dbt_project/
-│   ├── models/
-│   │   ├── staging/
-│   │   │   └── clean_books.sql    # Transformation logic
-│   │   └── schema.yml
-│
-├── fastapi_app/
-│   ├── main.py                    # API endpoints
-│   ├── routers/                   # API route modules
-│
-├── requirements.txt
-├── docker-compose.yml
-├── README.md
-└── docs/
-    └── architecture_diagram.png
+The goal of this project is to design and implement a **complete, production-style data pipeline** that demonstrates how to:
+
+1. **Extract** structured data from an external source (in this case, a public e-commerce/book website — used here only as an example; the same approach can be applied to any HTML/JSON API source such as product catalogs, news portals, or job boards).
+2. **Ingest** and **orchestrate** the extraction process using **Apache Airflow**, ensuring automation, scheduling, and monitoring of data workflows.
+3. **Store raw data** in a **PostgreSQL** database for persistence and reproducibility.
+4. **Transform** raw data into a clean, analytics-ready format using **dbt**, following best practices for modular SQL modeling.
+5. **Serve** the cleaned data through a **FastAPI** REST interface, enabling integration with other systems or easy data exploration.
+6. **Monitor and visualize** pipeline performance using an **observability stack**:
+   - **StatsD Exporter**: Collects Airflow’s operational metrics.
+   - **Prometheus**: Pulls metrics in Prometheus exposition format for time-series storage.
+   - **Grafana**: Visualizes DAG run durations, task success/failure rates, and scheduler health through interactive dashboards.
+
+This project is designed not only to show the mechanics of ETL/ELT but also to **integrate observability and performance monitoring** into the workflow — a critical component in real-world data engineering.
+
+By replacing the example data source with a domain-specific one, the same architecture could be used for:
+- Price tracking for e-commerce products.
+- News aggregation pipelines.
+- Sports statistics collection.
+- Job postings monitoring.
+- Social media trend tracking.
+
+
