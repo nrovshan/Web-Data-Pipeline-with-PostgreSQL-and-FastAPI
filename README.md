@@ -30,7 +30,7 @@ The goal is to demonstrate **ETL orchestration**, **SQL transformations**, and *
 
 ---
 
-## 🎯 Project Goal
+## Project Goal
 
 The goal of this project is to design and implement a **complete, production-style data pipeline** that demonstrates how to:
 
