@@ -1,6 +1,8 @@
 # Web Data Pipeline — Web Scraping, Airflow, PostgreSQL, dbt, FastAPI
 
-![Project Workflow](docs/architecture_diagram.png) <!-- Optional: Add your Miro diagram here -->
+![Project Architecure:](screenshots/project_architecture.png)
+
+
 
 ## Overview
 
