@@ -219,6 +219,28 @@ services:
   # or by explicitly targeted on the command line e.g. docker-compose up flower.
   # See: https://docs.docker.com/compose/profiles/
 
+
+  
+  postgres:
+    image: postgres:16
+    container_name: postgres
+    restart: unless-stopped
+    env_file: .env.example           # uses POSTGRES_USER/PASSWORD/DB/PORT/HOST from your file
+    environment:
+      PGDATA: /var/lib/postgresql/data/pgdata
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"   # expose to host if you want to connect from IDE
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      # OPTIONAL: auto-run SQL on first startup (when volume is empty)
+      - ./db/init:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-postgres} -d ${POSTGRES_DB:-books}"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+
   prometheus:
     image: prom/prometheus
     container_name: prometheus
@@ -248,5 +270,6 @@ services:
 volumes:
   postgres-db-volume:
   grafana-storage:
+  pgdata:
 
  
