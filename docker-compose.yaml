@@ -108,6 +108,12 @@ services:
     depends_on:
       airflow-init:
         condition: service_completed_successfully
+    
+    depends_on:
+      postgres:
+        condition: service_healthy
+      airflow-init:
+        condition: service_completed_successfully
 
   airflow-scheduler:
     <<: *airflow-common
@@ -122,6 +128,11 @@ services:
     depends_on:
       airflow-init:
         condition: service_completed_successfully
+    depends_on:
+    postgres:
+      condition: service_healthy
+    airflow-init:
+      condition: service_completed_successfully
 
 
   airflow-triggerer:
@@ -135,6 +146,11 @@ services:
       start_period: 30s
     restart: always
     depends_on:
+      airflow-init:
+        condition: service_completed_successfully
+    depends_on:
+      postgres:
+        condition: service_healthy
       airflow-init:
         condition: service_completed_successfully
 
@@ -201,6 +217,10 @@ services:
     user: "0:0"
     volumes:
       - ${AIRFLOW_PROJ_DIR:-.}:/sources
+    
+    depends_on:
+      postgres:
+        condition: service_healthy
 
   airflow-cli:
     <<: *airflow-common
@@ -225,7 +245,7 @@ services:
     image: postgres:16
     container_name: postgres
     restart: unless-stopped
-    env_file: .env.example           # uses POSTGRES_USER/PASSWORD/DB/PORT/HOST from your file
+    env_file: .env           # uses POSTGRES_USER/PASSWORD/DB/PORT/HOST from your file
     environment:
       PGDATA: /var/lib/postgresql/data/pgdata
     ports:
