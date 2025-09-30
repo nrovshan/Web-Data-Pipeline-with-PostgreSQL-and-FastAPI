@@ -50,3 +50,49 @@ The goal of this project is to design and implement a **complete, production-sty
 1. Clone env.example file
 ```
 cp .env.example .env
+
+2. Start the stack
+```
+docker compose up -d --build
+
+3. Check containers:
+```
+docker compose ps
+
+You should see: postgres, airflow-webserver, airflow-scheduler, airflow-triggerer, prometheus, grafana, statsd-exporter
+
+4. Open Airflow UI
+
+URL: http://localhost:8080
+User/Pass: airflow / airflow (configured in compose)
+
+- Create the Postgres Connection (one time)
+
+Airflow → Admin → Connections → +
+Fill in:
+
+- Conn Id: my_postgres_conn
+- Conn Type: Postgres
+- Host: postgres (service name, not localhost)
+- Schema: books
+- Login: postgres
+- Password: postgres
+- Port: 5432
+Save.
+
+
+5. Run the pipeline
+
+In Airflow → DAGs, run your DAG (e.g., scrape_and_store_books).
+
+6. Verify data in Postgres
+
+From the Postgres container:
+```# list tables
+docker compose exec postgres psql -U postgres -d books -c "SELECT table_schema, table_name FROM information_schema.tables WHERE table_schema='public' ORDER BY 1,2;"
+
+# preview raw rows
+docker compose exec postgres psql -U postgres -d books -c "SELECT * FROM public.books LIMIT 5;"
+
+# preview cleaned rows
+docker compose exec postgres psql -U postgres -d books -c "SELECT * FROM public.clean_books LIMIT 5;"
