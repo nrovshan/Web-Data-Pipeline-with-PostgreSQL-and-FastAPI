@@ -44,13 +44,10 @@ The goal of this project is to design and implement a **complete, production-sty
    - **Prometheus**: Pulls metrics in Prometheus exposition format for time-series storage.
    - **Grafana**: Visualizes DAG run durations, task success/failure rates, and scheduler health through interactive dashboards.
 
-This project is designed not only to show the mechanics of ETL/ELT but also to **integrate observability and performance monitoring** into the workflow — a critical component in real-world data engineering.
 
-By replacing the example data source with a domain-specific one, the same architecture could be used for:
-- Price tracking for e-commerce products.
-- News aggregation pipelines.
-- Sports statistics collection.
-- Job postings monitoring.
-- Social media trend tracking.
+## Manual Build
+
+``` 1. Clone env.example file
+cp .env.example .env ```
 
 
