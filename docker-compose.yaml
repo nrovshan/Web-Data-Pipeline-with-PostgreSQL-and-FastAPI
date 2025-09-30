@@ -242,7 +242,7 @@ services:
     environment:
       PGDATA: /var/lib/postgresql/data/pgdata
     ports:
-      - "${POSTGRES_PORT:-5432}:5432"   # expose to host if you want to connect from IDE
+      - "5433:5432"   # expose to host if you want to connect from IDE
     volumes:
       - pgdata:/var/lib/postgresql/data
       # OPTIONAL: auto-run SQL on first startup (when volume is empty)
