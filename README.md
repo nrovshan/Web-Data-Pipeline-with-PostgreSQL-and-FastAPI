@@ -49,16 +49,18 @@ The goal of this project is to design and implement a **complete, production-sty
 
 1. Clone env.example file
 ```
-cp .env.example .env```
+cp .env.example .env
+```
 
 2. Start the stack
 ```
-docker compose up -d --build```
+docker compose up -d --build
+```
 
 3. Check containers:
 ```
-docker compose ps```
-
+docker compose ps
+```
 You should see: postgres, airflow-webserver, airflow-scheduler, airflow-triggerer, prometheus, grafana, statsd-exporter
 
 4. Open Airflow UI
@@ -96,3 +98,5 @@ docker compose exec postgres psql -U postgres -d books -c "SELECT * FROM public.
 
 # preview cleaned rows
 docker compose exec postgres psql -U postgres -d books -c "SELECT * FROM public.clean_books LIMIT 5;"
+```
+
