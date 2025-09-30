@@ -48,6 +48,4 @@ The goal of this project is to design and implement a **complete, production-sty
 ## Manual Build
 
 ``` 1. Clone env.example file
-cp .env.example .env ```
-
-
+cp .env.example .env
