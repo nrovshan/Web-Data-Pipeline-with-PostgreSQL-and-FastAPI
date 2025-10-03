@@ -65,8 +65,8 @@ You should see: postgres, airflow-webserver, airflow-scheduler, airflow-triggere
 
 **4. Open Airflow UI**
 
-URL: http://localhost:8080
-User/Pass: airflow / airflow (configured in compose)
+- URL: http://localhost:8080
+- User/Pass: airflow / airflow (configured in compose)
 
 - Create the Postgres Connection (one time)
 
@@ -80,7 +80,7 @@ Fill in:
 - Login: postgres
 - Password: postgres
 - Port: 5432
-Save.
+
 
 
 **5. Run the pipeline**
