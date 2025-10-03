@@ -101,3 +101,29 @@ docker compose exec postgres psql -U postgres -d books -c "SELECT * FROM public.
 docker compose exec postgres psql -U postgres -d books -c "SELECT * FROM public.clean_books LIMIT 5;"
 ```
 
+## Fastapi configuration
+
+**7. Activate virtual environment**
+
+```
+python -m venv new_venv
+source new_venv/bin/activate    # Linux/Mac
+new_venv\Scripts\activate       # Windows
+```
+
+**8. Install requirements**
+
+```
+pip install -r requiriments.txt
+```
+
+**9. Run FastAPI server**
+
+```
+uvicorn fastapi_app.main:app --reload --port 8000
+```
+
+**10. Open API docs**
+
+Swagger UI: http://127.0.0.1:8000/docs
+ReDoc: http://127.0.0.1:8000/redoc
