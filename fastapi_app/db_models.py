@@ -12,7 +12,7 @@ class CleanBooks(Base):
     stock = Column(String)
     category = Column(String)
     book_tax = Column(String)
-    number_review = Column(String)
+    number_reviews = Column("number_reviews", String)
     page_url = Column(String)
     loaded_at = Column(TIMESTAMP)
 
